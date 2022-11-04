@@ -1,3 +1,5 @@
+#DEPRACTED THIS VERSION DOES NOT WORK SEE portscanner2.py
+
 import socket as sk
 for port in range (1,1024):
     try:
@@ -8,4 +10,6 @@ for port in range (1,1024):
         s.close
     except: continue
 
+#DEPRACTED THIS VERSION DOES NOT WORK SEE portscanner2.py
 
+print("#DEPRACTED THIS VERSION DOES NOT WORK SEE portscanner2.py")
