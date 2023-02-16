@@ -52,6 +52,13 @@ def isEqual1(str1, str2):
             return(False)
     return(True)
 '''
+#SUM THE LIST AD DIVIDE IT BY LENGTH, IF NO INPUT RETURN ZERO
+
+def calculateAverage(lst):
+    if len(lst) == 0:
+        return 0
+    else:
+        return round(sum(lst) / len(lst), 2)
 
 [][][][][][][]
 NETWORKING
