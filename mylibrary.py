@@ -51,7 +51,7 @@ def isEqual1(str1, str2):
         if (s1[i] != s2[i]):
             return(False)
     return(True)
-'''
+
 #SUM THE LIST AD DIVIDE IT BY LENGTH, IF NO INPUT RETURN ZERO
 
 def calculateAverage(lst):
@@ -65,7 +65,7 @@ NETWORKING
 [][][][][][][]
 
 
-'''
+
 def get_ip_address(ifname):
     """Function to get the IP address of a network interface."""
     s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
