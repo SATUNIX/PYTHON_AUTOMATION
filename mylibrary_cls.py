@@ -144,6 +144,31 @@ class Server:
         self.close()
 
 
+'''
+NETWORKING
+'''
+
+
+
+def get_ip_address(ifname):
+    """Function to get the IP address of a network interface."""
+    s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+    return socket.inet_ntoa(fcntl.ioctl(
+        s.fileno(),
+        0x8915,  # SIOCGIFADDR
+        struct.pack('256s', ifname[:15].encode())
+    )[20:24])
+
+def get_network_ips(ip_address):
+    """Function to get all IP addresses on a network."""
+    network = ".".join(ip_address.split(".")[:-1]) + "."
+    return [network + str(i) for i in range(1, 256)]
+
+def find_other_ips(interface_name):
+    """Function to find all other IP addresses on a network."""
+    ip_address = get_ip_address(interface_name)
+    return get_network_ips(ip_address)
+
 
 
 class FileHandler:
