@@ -14,6 +14,8 @@ import socket
 import os
 import subprocess
 import sys
+import hashlib
+from cryptography.fernet import Fernet
 
 '''
 FileHandler class contains static methods to read data from and write data to a file.
@@ -25,8 +27,7 @@ StringUtils class contains static methods to reverse, get length, convert to upp
 Sorting class contains static methods to find the maximum of three numbers, count the number of uppercase characters in a string, and compare two strings.
 Networking class contains static methods to get IP address and network IPs of a given interface name, and to find other IPs in the same network.
 '''
-import hashlib
-from cryptography.fernet import Fernet
+
 
 class CryptoFunctions:
     
