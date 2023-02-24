@@ -25,6 +25,89 @@ StringUtils class contains static methods to reverse, get length, convert to upp
 Sorting class contains static methods to find the maximum of three numbers, count the number of uppercase characters in a string, and compare two strings.
 Networking class contains static methods to get IP address and network IPs of a given interface name, and to find other IPs in the same network.
 '''
+import hashlib
+from cryptography.fernet import Fernet
+
+class CryptoFunctions:
+    
+    def authenticate_user(self, username, password):
+        # Retrieve the user's stored password hash from a database or file
+        stored_hash = self.get_password_hash(username)
+        
+        # Hash the password entered by the user
+        password_hash = hashlib.sha256(password.encode()).hexdigest()
+        
+        # Compare the hashes to authenticate the user
+        if password_hash == stored_hash:
+            return True
+        else:
+            return False
+    
+    def get_password_hash(self, username):
+        # Retrieve the stored password hash for the given username
+        # This could be from a database, file, or other source
+        # For this example, we'll just return a hardcoded hash
+        if username == 'alice':
+            return 'd033e22ae348aeb5660fc2140aec35850c4da997'
+        elif username == 'bob':
+            return '5f4dcc3b5aa765d61d8327deb882cf99'
+        else:
+            return ''
+    
+    def encrypt_data(self, data, key):
+        # Generate a Fernet key from the provided key
+        fernet_key = Fernet(key)
+        
+        # Encrypt the data using Fernet
+        encrypted_data = fernet_key.encrypt(data.encode())
+        
+        return encrypted_data
+    
+    def decrypt_data(self, encrypted_data, key):
+        # Generate a Fernet key from the provided key
+        fernet_key = Fernet(key)
+        
+        # Decrypt the data using Fernet
+        decrypted_data = fernet_key.decrypt(encrypted_data)
+        
+        return decrypted_data.decode()
+    
+    def calculate_checksum(self, data):
+        # Calculate the SHA-256 hash of the data
+        checksum = hashlib.sha256(data.encode()).hexdigest()
+        
+        return checksum
+    
+    def sign_message(self, message, private_key):
+        # Hash the message using SHA-256
+        message_hash = hashlib.sha256(message.encode()).hexdigest()
+        
+        # Encrypt the hash using the private key
+        signature = self.encrypt_with_private_key(message_hash, private_key)
+        
+        return signature
+    
+    def verify_message(self, message, signature, public_key):
+        # Hash the message using SHA-256
+        message_hash = hashlib.sha256(message.encode()).hexdigest()
+        
+        # Decrypt the signature using the public key
+        decrypted_signature = self.decrypt_with_public_key(signature, public_key)
+        
+        # Compare the decrypted signature to the message hash to verify the message
+        if decrypted_signature == message_hash:
+            return True
+        else:
+            return False
+    
+    def encrypt_with_private_key(self, plaintext, key):
+        # TODO: Implement private key encryption logic
+        pass
+    
+    def decrypt_with_public_key(self, ciphertext, key):
+        # TODO: Implement public key decryption logic
+        pass
+
 #PREFIX CLASSES  HERE: ABOVE NETWORKING:
 
 
